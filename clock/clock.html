@@ -13,6 +13,7 @@
 //VARIABLES
 
 var vDATE = new Date();
+var vDATET = new Date();
 var vMIN = vDATE.getSeconds();
 
 var vMiSec = 0;
@@ -30,16 +31,23 @@ var vEside = 0;
 
 //INITIAL RUN
 	
-	document.getElementById("LINE01").innerHTML = "line 01"
-	document.getElementById("LINE02").innerHTML = "line 02"
-	document.getElementById("LINE03").innerHTML = "line 03"
-	document.getElementById("LINE04").innerHTML = "line 04"
-	document.getElementById("LINE05").innerHTML = "line 05"
-
+	
 //INTERVAL LOOP RUN
 
 setInterval(function(){
 
+	vDATET = new Date.now();
+	
+	document.getElementById("LINE01").innerHTML = vDATET;
+	document.getElementById("LINE02").innerHTML = vDATET;
+	document.getElementById("LINE03").innerHTML = vDATET;
+	document.getElementById("LINE04").innerHTML = vDATET;
+	document.getElementById("LINE05").innerHTML = vDATET;
+
+	
+	
+	
+	
 	//Get Current Time
 	vDATE = new Date();
 	vMiSec = vDATE.getMilliseconds();
