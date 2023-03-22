@@ -1,20 +1,114 @@
 <body>
 
+
+<h1 id="HEAD"></h1>
+<h1 id="SUBHEAD"></h1>
+
 <h1 id="LINE01"></h1>
 <h1 id="LINE02"></h1>
 <h1 id="LINE03"></h1>
 <h1 id="LINE04"></h1>
 <h1 id="LINE05"></h1>
+<h1 id="LINE06"></h1>
+<h1 id="LINE07"></h1>
+<h1 id="LINE08"></h1>
+<h1 id="LINE09"></h1>
+<h1 id="LINE10"></h1>
+<h1 id="LINE11"></h1>
+<h1 id="LINE12"></h1>
+<h1 id="LINE13"></h1>
+<h1 id="LINE14"></h1>
+<h1 id="LINE15"></h1>
 
 
 
 <script>
 
+
+/*
+
+03~09 6h : Sleep
+09~10 : Trans
+10~13 (3hr) : Personal
+13~14 (1hr) : Prep
+14~15 (3hr) : Trans
+15~18 3h : Offical
+18~19 1h : Workout
+19~22 3h : Offical
+22~23 1h : Trans
+23~02 3h : Personal
+02~03 1h : Trans
+
+
+
+
+
+*/
+
 //VARIABLES
 
+
+
+
+var vTASKS2 = [
+	[0300, 0900, "Sleep"],
+	[0900, 1000, "Trans"],
+	[1000, 1300, "Personal"],
+	[1300, 1400, "Prep"],
+	[1400, 0000, "Trans"],
+	[1500, 0000, "Offical"],
+	[1800, 0000, "Workout"],
+	[1900, 0000, "Offical"],
+	[2200, 0000, "Trans"],
+	[2300, 0000, "Personal"],
+	[0200, 0000, "Trans"]
+];
+
+
+
+var vTASKS2 = [
+	[00, "Personal"],
+	[01, "Personal"],
+	[02, "Trans"],
+	[03, "Sleep"],
+	[04, "Sleep"],
+	[05, "Sleep"],
+	[06, "Sleep"],
+	[07, "Sleep"],
+	[08, "Sleep"],
+	[09, "Trans"],
+	[10, "Personal"],
+	[11, "Personal"],
+	[12, "Personal"],
+	[13, "Prep"],
+	[14, "Trans"],
+	[15, "Offical"],
+	[16, "Offical"],
+	[17, "Offical"],
+	[18, "Workout"],
+	[19, "Offical"],
+	[20, "Offical"],
+	[21, "Offical"],
+	[22, "Trans"],
+	[23, "Personal"]
+];
+
+
+
+//Start Times Per Task
+//0900
+
+
+
+
 var vDATE = new Date();
-var vDATET = new Date();
 var vMIN = vDATE.getSeconds();
+
+var vTemp = 0;
+
+var vHOUR = 0;
+var vMIN = 0;
+var vSEC = 0;
 
 var vMiSec = 0;
 var vSec = 0;
@@ -30,19 +124,35 @@ var vEside = 0;
 //FUNCTIONS
 
 //INITIAL RUN
-	
+
 	
 //INTERVAL LOOP RUN
 
 setInterval(function(){
 
-	vDATET = new Date.now();
-	
-	document.getElementById("LINE01").innerHTML = vDATET;
-	document.getElementById("LINE02").innerHTML = vDATET;
-	document.getElementById("LINE03").innerHTML = vDATET;
-	document.getElementById("LINE04").innerHTML = vDATET;
-	document.getElementById("LINE05").innerHTML = vDATET;
+	vDATE = new Date();
+	vHOUR = vDATE.getHours();
+	vMIN = vDATE.getMinutes();
+	vSEC = vDATE.getSeconds();
+	vTemp = vDATE.getTime();
+
+	document.getElementById("LINE01").innerHTML = [vTASKS2[vHOUR][1]]+" | "+[vHOUR];
+	document.getElementById("LINE02").innerHTML = [vTASKS2[vHOUR+1][1]]+" | "+[vHOUR];
+	document.getElementById("LINE03").innerHTML = [vTASKS2[vHOUR+2][1]]+" | "+[vHOUR];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	
 	
