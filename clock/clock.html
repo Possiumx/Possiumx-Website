@@ -4,21 +4,21 @@
 <h1 id="HEAD"></h1>
 <h1 id="SUBHEAD"></h1>
 
-<h1 id="LINE01"></h1>
-<h1 id="LINE02"></h1>
-<h1 id="LINE03"></h1>
-<h1 id="LINE04"></h1>
-<h1 id="LINE05"></h1>
-<h1 id="LINE06"></h1>
-<h1 id="LINE07"></h1>
-<h1 id="LINE08"></h1>
-<h1 id="LINE09"></h1>
-<h1 id="LINE10"></h1>
-<h1 id="LINE11"></h1>
-<h1 id="LINE12"></h1>
-<h1 id="LINE13"></h1>
-<h1 id="LINE14"></h1>
-<h1 id="LINE15"></h1>
+<h1 id=01></h1>
+<h1 id=02></h1>
+<h1 id=03></h1>
+<h1 id=04></h1>
+<h1 id=05></h1>
+<h1 id=06></h1>
+<h1 id=07></h1>
+<h1 id=08></h1>
+<h1 id=09></h1>
+<h1 id=10></h1>
+<h1 id=11></h1>
+<h1 id=12></h1>
+<h1 id=13></h1>
+<h1 id=14></h1>
+<h1 id=15></h1>
 
 
 
@@ -103,6 +103,7 @@ var vTASKS2 = [
 
 var vDATE = new Date();
 var vMIN = vDATE.getSeconds();
+var vLEN = 0;
 
 var vTemp = 0;
 
@@ -141,13 +142,11 @@ setInterval(function(){
 	vTemp = vDATE.getTime();
 
 	vLEN = vTASKS3.length;
-	for (var i=0;i<10;i++) {
-  		
+	for (var i=0;i<vLEN;i++) {
+  		document.getElementById(vLEN).innerHTML = [vTASKS3[vHOUR][1]];
 	}
 	
-	document.getElementById("LINE01").innerHTML = [vTASKS2[vHOUR][1]]+" | "+[vHOUR];
-	document.getElementById("LINE02").innerHTML = [vTASKS2[vHOUR+1][1]]+" | "+[vHOUR];
-	document.getElementById("LINE03").innerHTML = [vTASKS2[vHOUR+2][1]]+" | "+[vLEN];
+	
 
 
 
