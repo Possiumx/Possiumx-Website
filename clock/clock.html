@@ -4,21 +4,22 @@
 <h1 id="HEAD"></h1>
 <h1 id="SUBHEAD"></h1>
 
-<h1 id=01></h1>
-<h1 id=02></h1>
-<h1 id=03></h1>
-<h1 id=04></h1>
-<h1 id=05></h1>
-<h1 id=06></h1>
-<h1 id=07></h1>
-<h1 id=08></h1>
-<h1 id=09></h1>
-<h1 id=10></h1>
-<h1 id=11></h1>
-<h1 id=12></h1>
-<h1 id=13></h1>
-<h1 id=14></h1>
-<h1 id=15></h1>
+<h1 id="0"></h1>
+<h1 id="1"></h1>
+<h1 id="2"></h1>
+<h1 id="3"></h1>
+<h1 id="4"></h1>
+<h1 id="5"></h1>
+<h1 id="6"></h1>
+<h1 id="7"></h1>
+<h1 id="8"></h1>
+<h1 id="9"></h1>
+<h1 id="10"></h1>
+<h1 id="11"></h1>
+<h1 id="12"></h1>
+<h1 id="13"></h1>
+<h1 id="14"></h1>
+<h1 id="15"></h1>
 
 
 
@@ -38,78 +39,47 @@
 22~23 1h : Trans
 23~02 3h : Personal
 02~03 1h : Trans
-
-
-
-
-
 */
 
 //VARIABLES
 
 
-//Start Time, UTC Offset
+//Start Time "XXXX", "Task Name"
 
-var vTASKS3 = [
-	[0300, "Sleep"],
-	[0900, "Trans"],
-	[1000, "Personal"],
-	[1300, "Prep"],
-	[1400, "Trans"],
-	[1500, "Offical"],
-	[1800, "Workout"],
-	[1900, "Offical"],
-	[2200, "Trans"],
-	[2300, "Personal"],
-	[0200, "Trans"]
+const vTaskList = [
+	["0300", "Sleep"],
+	["0900", "Trans"],
+	["1000", "Personal"],
+	["1300", "Prep"],
+	["1400", "Trans"],
+	["1500", "Offical"],
+	["1800", "Workout"],
+	["1900", "Offical"],
+	["2200", "Trans"],
+	["2300", "Personal"],
+	["0200", "Trans"]
+];
+
+//Count Num, "Task Name", "Start Time", "Time Until Start"
+var vReorderedTaskList = [
+	[0, "", "", ""],
 ];
 
 
 
-var vTASKS2 = [
-	[00, "Personal"],
-	[01, "Personal"],
-	[02, "Trans"],
-	[03, "Sleep"],
-	[04, "Sleep"],
-	[05, "Sleep"],
-	[06, "Sleep"],
-	[07, "Sleep"],
-	[08, "Sleep"],
-	[09, "Trans"],
-	[10, "Personal"],
-	[11, "Personal"],
-	[12, "Personal"],
-	[13, "Prep"],
-	[14, "Trans"],
-	[15, "Offical"],
-	[16, "Offical"],
-	[17, "Offical"],
-	[18, "Workout"],
-	[19, "Offical"],
-	[20, "Offical"],
-	[21, "Offical"],
-	[22, "Trans"],
-	[23, "Personal"]
-];
-
-
-
-//Start Times Per Task
-//0900
 
 
 
 
-var vDATE = new Date();
-var vMIN = vDATE.getSeconds();
-var vLEN = 0;
+var vDate = new Date();
+var vMin = vDate.getSeconds();
+var vLen = 0;
 
 var vTemp = 0;
 
-var vHOUR = 0;
-var vMIN = 0;
-var vSEC = 0;
+var vHour = 0;
+var vMin = 0;
+var vSec = 0;
 
 var vMiSec = 0;
 var vSec = 0;
@@ -131,19 +101,59 @@ var vEside = 0;
 
 setInterval(function(){
 
-	
-	
-	
-	
-	vDATE = new Date();
-	vHOUR = vDATE.getHours();
-	vMIN = vDATE.getMinutes();
-	vSEC = vDATE.getSeconds();
-	vTemp = vDATE.getTime();
 
-	vLEN = vTASKS3.length;
-	for (var i=0;i<vLEN;i++) {
-  		document.getElementById(vLEN).innerHTML = [vTASKS3[vHOUR][1]];
+	vLen = vTaskList.length;
+	for (var i=0;i<vLen;i++) {
+
+
+		vHour = Number(vTaskList[i][0].substring(0,2));
+		vMin = Number(vTaskList[i][0].substring(2,4));
+		vText = vTaskList[i][1];
+
+		vCurrentDate = new Date();
+		vTaskDate = new Date();
+
+		vTaskDate.setHours(Number(vHour));
+		vTaskDate.setMinutes(Number(vMin));
+
+		if(vTaskDate.getTime()-vCurrentDate.getTime()>0)
+		{
+			vTimeDiff = vTaskDate.getTime() - vCurrentDate.getTime();
+		}
+		else
+		{
+			vTaskDate.setDate(vTaskDate.getDate()+1);
+			vTimeDiff = vTaskDate.getTime() - vCurrentDate.getTime();
+		}
+
+		vHour = vTaskDate.getHours().toString().padStart(2,'0');
+		vMin = vTaskDate.getMinutes().toString().padStart(2,'0');
+		vStartTime = [vHour]+":"+[vMin];
+
+		vCount = Math.floor(vTimeDiff/60000);
+		vCountHour = Math.floor(vCount/60).toString().padStart(2,'0');
+		vCountMin = (vCount%60).toString().padStart(2,'0');
+		vCountSec = (60-vCurrentDate.getSeconds()).toString().padStart(2,'0');
+		vCountTime = [vCountHour]+":"+[vCountMin]+":"+[vCountSec];
+
+
+		document.getElementById(i.toString()).innerHTML = [vText]+" @ "+[vStartTime]+" | starts in "+[vCountTime]+" | "+[vCount];
+		
+		/*
+		//Count Num, "Task Name", "Start Time", "Time Until Start"
+		if(i==0)
+		{
+						
+		}
+		else
+		{
+			//vReorderedTaskList.push([vCount, vText, vStartTime, vCountTime);
+		}
+
+*/
+
+
+
 	}
 	
 	
@@ -167,10 +177,10 @@ setInterval(function(){
 	
 	
 	//Get Current Time
-	vDATE = new Date();
-	vMiSec = vDATE.getMilliseconds();
-	vSec = vDATE.getSeconds();
-	vMin = vDATE.getMinutes();
+	vDate = new Date();
+	vMiSec = vDate.getMilliseconds();
+	vSec = vDate.getSeconds();
+	vMin = vDate.getMinutes();
 
 	//vZ = vMiSec/2.77777777778
 	vZ = Math.abs((((vSec*1000)+vMiSec)/41.6666666667));
