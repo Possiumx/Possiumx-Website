@@ -48,7 +48,7 @@
 //VARIABLES
 
 
-
+//Start Time, UTC Offset
 
 var vTASKS3 = [
 	[0300, "Sleep"],
@@ -130,12 +130,21 @@ var vEside = 0;
 
 setInterval(function(){
 
+	
+	
+	
+	
 	vDATE = new Date();
 	vHOUR = vDATE.getHours();
 	vMIN = vDATE.getMinutes();
 	vSEC = vDATE.getSeconds();
 	vTemp = vDATE.getTime();
 
+	
+	for (var i=0;i<10;i++) {
+  		
+	}
+	
 	document.getElementById("LINE01").innerHTML = [vTASKS2[vHOUR][1]]+" | "+[vHOUR];
 	document.getElementById("LINE02").innerHTML = [vTASKS2[vHOUR+1][1]]+" | "+[vHOUR];
 	document.getElementById("LINE03").innerHTML = [vTASKS2[vHOUR+2][1]]+" | "+[vHOUR];
