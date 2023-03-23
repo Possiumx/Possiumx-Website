@@ -3,13 +3,13 @@ h1
 {
 	margin:0;
 	padding:0;
-	font-family:OCR A;
+
 }
 h4
 {
 	margin:0;
 	padding:0;
-	font-family:OCR A;
+
 }
 </style>
 
@@ -103,6 +103,12 @@ function sortFunction(a, b) {
 
 
 
+
+	
+//INTERVAL LOOP RUN
+
+setInterval(function(){
+
 	vLen = vTaskList02.length;
 	for (var i=0;i<vLen;i++) {
 	
@@ -134,10 +140,7 @@ function sortFunction(a, b) {
 	}
 
 	vTaskList02.sort(sortFunction)
-	
-//INTERVAL LOOP RUN
 
-setInterval(function(){
 
 	vLen = vTaskList02.length;
 	for (var i=0;i<vLen;i++) {
@@ -170,8 +173,11 @@ setInterval(function(){
 			document.getElementById("HEAD02").innerHTML = [vTaskList02[vLen-1][tx].toUpperCase()];
 			document.getElementById("SUBHEAD02").innerHTML = [vCountTime];
 		}
-		
+	
+		if(i<vLen-1)
+		{
 		document.getElementById(i.toString()).innerHTML = [vStartTime]+" | "+[vText];
+		}
 
 		
 		
