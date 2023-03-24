@@ -4,24 +4,18 @@ h1
 	margin:0;
 	padding:0;
 	font-family: OCR A;
-
 }
 h6
 {
 	margin:0;
 	padding:0;
 	font-family: OCR A;
-
 }
 </style>
-
 <body>
-
 <h1 id="HEAD02"></h1>
 <h1 id="SUBHEAD02"></h1>
-
 <hr>
-
 <h6 id="0"></h6>
 <h6 id="1"></h6>
 <h6 id="2"></h6>
@@ -38,50 +32,25 @@ h6
 <h6 id="13"></h6>
 <h6 id="14"></h6>
 <h6 id="15"></h6>
-
-
-
 <h6 id="HEAD"></h6>
 <h6 id="SUBHEAD"></h6>
-
 <script>
-
 //VARIABLES
 
 //Minute to Start '0', Time of Start 'XXXX', "Task Title"
-const vTaskListTemp = [
+const vTaskListWeek = [
 	[0, "0300", "Sleep"],
 	[0, "0900", "«rest»"],
-	[0, "0930", "Prep"],
+	[0, "0930", "PrEP"],
 	[0, "1030", "Alpha"],
 	[0, "1330", "«rest»"],
 	[0, "1400", "Transit"],
 	[0, "1430", "«rest»"],
 	[0, "1500", "Bravo"],
 	[0, "1800", "Workout"],
-	[0, "1900", "Delta"],
-	[0, "2200", "«rest»"],
-	[0, "2230", "Transit"],
-	[0, "2300", "«rest»"],
-	[0, "2330", "Echo"],
-	[0, "0230", "«rest»"],
-];
-
-
-//Minute to Start '0', Time of Start 'XXXX', "Task Title"
-const vTaskList02 = [
-	[0, "0300", "Sleep"],
-	[0, "0900", "«rest»"],
-	[0, "0930", "PrEP"],
-	[0, "1030", "Alpha"],
-	[0, "1330", "«rest»"],
-	[0, "1400", "Drive"],
-	[0, "1430", "«rest»"],
-	[0, "1500", "Bravo"],
-	[0, "1800", "Workout"],
 	[0, "1900", "Charlie"],
 	[0, "2200", "«rest»"],
-	[0, "2230", "Drive"],
+	[0, "2230", "Transit"],
 	[0, "2300", "«rest»"],
 	[0, "2330", "Delta"],
 	[0, "0230", "«rest»"],
@@ -96,40 +65,40 @@ const vTaskListEnd = [
 	[0, "1530", "«rest»"],
 	[0, "1600", "Bravo"],
 	[0, "2100", "«rest»"],
-	[0, "2130", "Charlie],
+	[0, "2130", "Charlie"],
 	[0, "0230", "«rest»"],
 ];
 
 
-//Count Num, "Task Name", "Start Time", "Time Until Start"
-var vReorderedTaskList = [
-	[0, "", "", ""],
-];
+
+
+
+
+
+
+
+
+
+
+
 
 var vDate = new Date();
 var vMin = vDate.getSeconds();
 var vLen = 0;
-
 var vTemp = 0;
-
 var vHour = 0;
 var vMin = 0;
 var vSec = 0;
-
 var vMiSec = 0;
 var vSec = 0;
 var vMin = 0;
-
 var vZ = 0;
 var vAside = 0;
 var vBside = 0;
 var vCside = 0;
 var vDside = 0;
 var vEside = 0;
-
 //FUNCTIONS
-
-
 function sortFunction(a, b) {
     if (a[0] === b[0]) {
         return 0;
@@ -138,16 +107,34 @@ function sortFunction(a, b) {
         return (a[0] < b[0]) ? -1 : 1;
     }
 }
-
 //INITIAL RUN
-
-
 
 
 	
 //INTERVAL LOOP RUN
-
 setInterval(function(){
+
+
+
+
+
+	var dnum = new Date().getDay();
+
+	//document.getElementById("SUBHEAD").innerHTML = [dnum];
+
+	var vTaskList02 = vTaskListEnd;
+
+	if(dnum>=2&&dnum<=5)
+	{
+		vTaskList02 = vTaskListWeek;
+	}
+
+
+	
+
+
+	
+
 
 	vLen = vTaskList02.length;
 	for (var i=0;i<vLen;i++) {
@@ -155,16 +142,18 @@ setInterval(function(){
 		const hm = 0;
 		const st = 1;
 		const tx = 2;
+
+		
 		
 		vText = vTaskList02[i][tx];
-
 		vCurrentDate = new Date();
 		vTaskDate = (new Date());
+
+		
 		
 		vHour = Number(vTaskList02[i][st].substring(0,2));
 		vMin = Number(vTaskList02[i][st].substring(2,4));
 		vTaskDate.setHours(vHour,vMin);
-
 		if(vTaskDate.getTime()-vCurrentDate.getTime()>0)
 		{
 			vTimeDiff = vTaskDate.getTime()-vCurrentDate.getTime();
@@ -177,13 +166,9 @@ setInterval(function(){
 		
 		vTaskList02[i][hm] = Math.floor(vTimeDiff/60000);
 		//document.getElementById("HEAD").innerHTML = [vTaskList02[i][hm]];
-		//document.getElementById("SUBHEAD").innerHTML = [vTimeDiff];
-
+		//document.getElementById("SUBHEAD").innerHTML = [vTaskName];
 	}
-
 	vTaskList02.sort(sortFunction)
-
-
 	vLen = vTaskList02.length;
 	for (var i=0;i<vLen;i++) {
 	
@@ -191,26 +176,30 @@ setInterval(function(){
 		const st = 1;
 		const tx = 2;
 		
-		vText = vTaskList02[i][tx];
 
+
+		vText = vTaskList02[i][tx];
 		vCurrentDate = new Date();
 		vTaskDate = (new Date());
+
 		
 		vHour = Number(vTaskList02[i][st].substring(0,2));
 		vMin = Number(vTaskList02[i][st].substring(2,4));
 		vTaskDate.setHours(vHour,vMin);
+	
+
 
 		vHour = vTaskDate.getHours().toString().padStart(2,'0');
 		vMin = vTaskDate.getMinutes().toString().padStart(2,'0');
 		vStartTime = [vHour]+":"+[vMin];
-
 		vCount = vTaskList02[i][hm];
 		vCountHour = Math.floor(vCount/60).toString().padStart(2,'0');
 		vCountMin = (vCount%60).toString().padStart(2,'0');
 		vCountSec = (60-vCurrentDate.getSeconds()).toString().padStart(2,'0');
 		
-		vCountTime = [vCountHour]+":"+[vCountMin]+":"+[vCountSec];
+		
 
+		vCountTime = [vCountHour]+":"+[vCountMin]+":"+[vCountSec];
 		if(i==0)
 		{
 			document.getElementById("HEAD02").innerHTML = [vTaskList02[vLen-1][tx].toUpperCase()];
@@ -224,9 +213,9 @@ setInterval(function(){
 
 		
 		
+		
 	}
 	
-
 	//########################
 	
 	
@@ -235,16 +224,13 @@ setInterval(function(){
 	vMiSec = vDate.getMilliseconds();
 	vSec = vDate.getSeconds();
 	vMin = vDate.getMinutes();
-
 	//vZ = vMiSec/2.77777777778
 	vZ = Math.abs((((vSec*1000)+vMiSec)/41.6666666667));
-
 	vAside = vZ-72;
 	vBside = vZ-144;
 	vCside = vZ-216;
 	vDside = vZ-288;
 	vEside = vZ-360;
-
 	if(vAside<0)
 	{vAside=vAside+360;}
 	if(vBside<0)
@@ -255,17 +241,12 @@ setInterval(function(){
 	{vDside=vDside+360;}
 	if(vEside<0)
 	{vEside=vEside+360;}
-
 	document.body.style.setProperty(`--Grad-A`, `hsl(${vAside}, 90%, 50%)`);
 	document.body.style.setProperty(`--Grad-B`, `hsl(${vBside}, 90%, 50%)`);
 	document.body.style.setProperty(`--Grad-C`, `hsl(${vCside}, 90%, 50%)`);
 	document.body.style.setProperty(`--Grad-D`, `hsl(${vDside}, 90%, 50%)`);
 	document.body.style.setProperty(`--Grad-E`, `hsl(${vEside}, 90%, 50%)`);
-
 	document.body.style.background = 'linear-gradient(to bottom right, var(--Grad-A), var(--Grad-B), var(--Grad-C), var(--Grad-D), var(--Grad-E))';
-
 }, 1);
-
 </script>
-
 </body>
