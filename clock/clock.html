@@ -55,13 +55,13 @@ const vTaskList02 = [
 	[0, "0930", "Prep"],
 	[0, "1030", "Alpha"],
 	[0, "1330", "«rest»"],
-	[0, "1400", "Drive"],
+	[0, "1400", "Transit"],
 	[0, "1430", "«rest»"],
 	[0, "1500", "Bravo"],
 	[0, "1800", "Workout"],
 	[0, "1900", "Delta"],
 	[0, "2200", "«rest»"],
-	[0, "2230", "Drive"],
+	[0, "2230", "Transit"],
 	[0, "2300", "«rest»"],
 	[0, "2330", "Echo"],
 	[0, "0230", "«rest»"],
@@ -141,7 +141,7 @@ setInterval(function(){
 			vTimeDiff = vTaskDate.getTime()-vCurrentDate.getTime();
 		}
 		
-		vTaskList02[i][hm] = Math.floor(vTimeDiff/60000);
+		vTaskList02[i][hm] = Math.floor(vTimeDiff/1000);
 
 	}
 
@@ -169,9 +169,17 @@ setInterval(function(){
 		vStartTime = [vHour]+":"+[vMin];
 
 		vCount = vTaskList02[i][hm];
-		vCountHour = Math.floor(vCount/60).toString().padStart(2,'0');
-		vCountMin = (vCount%60).toString().padStart(2,'0');
-		vCountSec = (60-vCurrentDate.getSeconds()).toString().padStart(2,'0');
+		
+		vCountHour = Math.floor(vCount/3600);
+		vCount = vCount%3600;
+		vCountMin = Math.floor(vCount%60);
+		vCount = vCount%60;
+		vCountSec = vCount;
+		
+		vCountHour = vCountHour.toString().padStart(2,'0');
+		vCountMin = vCountMin.toString().padStart(2,'0');
+		vCountSec = vCountSec.toString().padStart(2,'0');
+		
 		vCountTime = [vCountHour]+":"+[vCountMin]+":"+[vCountSec];
 
 		if(i==0)
