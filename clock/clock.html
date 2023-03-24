@@ -141,9 +141,9 @@ setInterval(function(){
 			vTimeDiff = vTaskDate.getTime()-vCurrentDate.getTime();
 		}
 		
-		vTaskList02[i][hm] = Math.floor(vTimeDiff/10000);
-		document.getElementById("HEAD").innerHTML = [vTaskList02[i][hm]];
-		document.getElementById("SUBHEAD").innerHTML = [vTimeDiff];
+		vTaskList02[i][hm] = Math.floor(vTimeDiff/60000);
+		//document.getElementById("HEAD").innerHTML = [vTaskList02[i][hm]];
+		//document.getElementById("SUBHEAD").innerHTML = [vTimeDiff];
 
 	}
 
@@ -171,16 +171,9 @@ setInterval(function(){
 		vStartTime = [vHour]+":"+[vMin];
 
 		vCount = vTaskList02[i][hm];
-		
-		vCountHour = Math.floor(vCount/3600);
-		vCount = vCount%3600;
-		vCountMin = Math.floor(vCount%60);
-		vCount = vCount%60;
-		vCountSec = vCount;
-		
-		vCountHour = vCountHour.toString().padStart(2,'0');
-		vCountMin = vCountMin.toString().padStart(2,'0');
-		vCountSec = vCountSec.toString().padStart(2,'0');
+		vCountHour = Math.floor(vCount/60).toString().padStart(2,'0');
+		vCountMin = (vCount%60).toString().padStart(2,'0');
+		vCountSec = (60-vCurrentDate.getSeconds()).toString().padStart(2,'0');
 		
 		vCountTime = [vCountHour]+":"+[vCountMin]+":"+[vCountSec];
 
